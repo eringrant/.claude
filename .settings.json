@@ -1,0 +1,227 @@
+{
+  "model": "opus",
+  "env": {
+    "MAX_THINKING_TOKENS": "2048"
+  },
+  "permissions": {
+    "allow": [
+      // Python packaging and execution.
+      "Bash(uv:*)", // https://docs.astral.sh/uv
+
+      // Core file operations
+      "Read",
+      "Edit",
+      "MultiEdit",
+      "Write",
+      "NotebookRead",
+      "NotebookEdit",
+
+      // File system navigation and search
+      "Glob",
+      "Grep",
+      "LS",
+
+      // Task management (local)
+      "Task",
+      "TodoWrite",
+
+      // Web access tools
+      "WebFetch", // Fetch web content
+      "WebSearch", // Search the web
+
+      // File viewing and content inspection
+      "Bash(cat:*)", // Display file contents
+      "Bash(head:*)", // Show first lines of file
+      "Bash(tail:*)", // Show last lines of file
+      "Bash(less:*)", // Paginated file viewer
+      "Bash(more:*)", // Simple file pager
+
+      // File and directory search
+      "Bash(find:*)", // Find files and directories
+      "Bash(grep:*)", // Search text patterns in files
+      "Bash(rg:*)", // Ripgrep - fast text search
+      "Bash(ag:*)", // Silver searcher - fast text search
+
+      // Directory listing and navigation
+      "Bash(ls:*)", // List directory contents
+      "Bash(tree:*)", // Display directory tree
+      "Bash(pwd)", // Print working directory
+      "Bash(whoami)", // Current user
+
+      // System info and utilities
+      "Bash(date:*)", // Date and time
+      "Bash(echo:*)", // Print text
+
+      // Text processing and manipulation
+      "Bash(sed:*)", // Stream editor
+      "Bash(awk:*)", // Text processing language
+      "Bash(cut:*)", // Extract columns from text
+      "Bash(sort:*)", // Sort lines of text
+      "Bash(uniq:*)", // Remove duplicate lines
+      "Bash(wc:*)", // Word, line, character count
+      "Bash(diff:*)", // Compare files
+
+      // Archive and compression (local files only)
+      "Bash(tar:*)", // Archive files
+      "Bash(zip:*)", // Create zip archives
+      "Bash(unzip:*)", // Extract zip archives
+
+      // System introspection
+      "Bash(which:*)", // Locate command
+      "Bash(type:*)", // Display command type
+      "Bash(file:*)", // Determine file type
+      "Bash(stat:*)", // File statistics
+      "Bash(du:*)", // Disk usage
+      "Bash(df:*)", // Filesystem disk space
+
+      // Process monitoring (read-only)
+      "Bash(ps:*)", // List processes
+      "Bash(top:*)", // Display running processes
+      "Bash(htop:*)", // Interactive process viewer
+
+      // JSON/YAML processing (if tools already installed)
+      "Bash(jq:*)", // JSON processor
+      "Bash(yq:*)", // YAML processor
+
+      // Environment variables
+      "Bash(env:*)", // Display environment
+      "Bash(printenv:*)", // Print environment variables
+      "Bash(export:*)", // Set environment variables
+      "Bash(source:*)", // Execute script in current shell
+      "Bash(.:*)", // Execute script in current shell (shorthand)
+
+      // Documentation and help
+      "Bash(man:*)", // Manual pages
+      "Bash(info:*)", // Info documents
+      "Bash(help:*)", // Built-in help
+      "Bash(tldr:*)", // Simplified man pages
+
+      // Advanced text processing
+      "Bash(xargs:*)", // Build command lines from input
+      "Bash(tee:*)", // Write output to both file and stdout
+      "Bash(tr:*)", // Translate characters
+      "Bash(paste:*)", // Merge lines of files
+      "Bash(join:*)", // Join lines based on common field
+      "Bash(comm:*)", // Compare sorted files
+      "Bash(nl:*)", // Number lines
+      "Bash(fmt:*)", // Format paragraphs
+      "Bash(fold:*)", // Wrap lines
+      "Bash(pr:*)", // Format files for printing
+
+      // Binary/hex viewing and encoding
+      "Bash(od:*)", // Octal dump
+      "Bash(hexdump:*)", // Hexadecimal dump
+      "Bash(xxd:*)", // Hex dump with ASCII
+      "Bash(base64:*)", // Base64 encoding/decoding
+
+      // Cryptographic hashing (local computation)
+      "Bash(md5sum:*)", // MD5 hash
+      "Bash(sha1sum:*)", // SHA1 hash
+      "Bash(sha256sum:*)", // SHA256 hash
+      "Bash(openssl:*)", // Crypto operations (local only)
+
+      // System debugging and monitoring
+      "Bash(lsof:*)", // List open files
+      "Bash(strace:*)", // System call tracer
+      "Bash(ltrace:*)", // Library call tracer
+      "Bash(gdb:*)", // GNU debugger
+      "Bash(lldb:*)", // LLVM debugger
+      "Bash(valgrind:*)", // Memory error detector
+
+      // Timing and monitoring
+      "Bash(time:*)", // Time command execution
+      "Bash(watch:*)", // Repeatedly execute command
+
+      // Shell history and aliases
+      "Bash(history:*)", // Command history
+      "Bash(alias:*)", // Create command aliases
+      "Bash(unalias:*)", // Remove aliases
+
+      // Directory navigation
+      "Bash(cd:*)", // Change directory
+      "Bash(pushd:*)", // Push directory onto stack
+      "Bash(popd:*)", // Pop directory from stack
+      "Bash(dirs:*)", // Display directory stack
+
+      // Shell conditionals and logic
+      "Bash(test:*)", // Test conditions
+      "Bash([:*)", // Test conditions (bracket syntax)
+      "Bash([[:*)", // Extended test conditions
+      "Bash(true)", // Always succeeds
+      "Bash(false)", // Always fails
+
+      // Control flow
+      "Bash(exit:*)", // Exit shell
+      "Bash(return:*)", // Return from function
+      "Bash(break:*)", // Break from loop
+      "Bash(continue:*)", // Continue loop
+      "Bash(for:*)", // For loop
+      "Bash(while:*)", // While loop
+      "Bash(if:*)", // If statement
+      "Bash(case:*)", // Case statement
+      "Bash(function:*)", // Function definition
+
+      // File system operations
+      "Bash(mkdir:*)", // Create directories
+      "Bash(touch:*)", // Create/update file timestamps
+      "Bash(mv:*)", // Move/rename files
+      "Bash(cp:*)" // Copy files
+    ],
+
+    "deny": [
+      // Package managers and installers
+      "Bash(npm:*)", // Node package manager
+      "Bash(node:*)", // Node.js runtime
+      "Bash(npx:*)", // Execute npm packages
+      "Bash(tsc:*)", // TypeScript compiler
+      "Bash(tsx:*)", // TypeScript executor
+      "Bash(jest:*)", // JavaScript testing framework
+      "Bash(vitest:*)", // Vite testing framework
+      "Bash(yarn:*)", // Alternative npm package manager
+      "Bash(pnpm:*)", // Fast npm package manager
+      "Bash(bun:*)", // JavaScript runtime and package manager
+      "Bash(deno:*)", // Secure JavaScript/TypeScript runtime
+      "Bash(pip:*)", // Python package installer
+      "Bash(pip3:*)", // Python 3 package installer
+      "Bash(poetry:*)", // Python dependency management
+      "Bash(cargo:*)", // Rust package manager
+      "Bash(go:*)", // Go language tools
+
+      // Build systems and compilers
+      "Bash(make:*)", // Make build system
+      "Bash(cmake:*)", // Cross-platform make
+      "Bash(rustc:*)", // Rust compiler
+      "Bash(python:*)", // Python interpreter
+      "Bash(python3:*)", // Python 3 interpreter
+
+      // Development tools that may install/modify system
+      "Bash(eslint:*)", // JavaScript linter
+      "Bash(prettier:*)", // Code formatter
+      "Bash(ruff:*)", // Python linter
+      "Bash(black:*)", // Python code formatter
+      "Bash(mypy:*)", // Python type checker
+      "Bash(pytest:*)", // Python testing framework
+      "Bash(coverage:*)", // Code coverage tool
+
+      // Container and orchestration tools
+      "Bash(docker:*)", // Docker containerization
+      "Bash(docker-compose:*)", // Docker compose
+      "Bash(kubectl:*)", // Kubernetes control
+
+      // Network tools (internet access)
+      "Bash(curl:*)", // Specific curl restriction
+      "Bash(wget:*)", // Specific curl restriction
+      "Bash(nc:*)", // Netcat
+      "Bash(netcat:*)", // Netcat alternative name
+      "Bash(ping:*)", // Network ping
+      "Bash(traceroute:*)", // Network route tracing
+      "Bash(dig:*)", // DNS lookup
+      "Bash(nslookup:*)", // DNS lookup tool
+      "Bash(host:*)", // DNS lookup utility
+      "Bash(ifconfig:*)", // Network interface config
+      "Bash(ip:*)", // IP routing utilities
+      "Bash(netstat:*)", // Network statistics
+      "Bash(ss:*)" // Socket statistics
+    ]
+  }
+}
