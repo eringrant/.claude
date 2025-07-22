@@ -8,6 +8,38 @@
       // Python packaging and execution.
       "Bash(uv:*)", // https://docs.astral.sh/uv
 
+      // Some Git commands
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      // Read-only repository inspection
+      "Bash(git status)", // Show working tree status
+      "Bash(git log*)", // View commit history
+      "Bash(git show*)", // Show commit details
+      "Bash(git diff*)", // Show differences
+      "Bash(git blame*)", // Show file annotations
+
+      // Branch and reference inspection
+      "Bash(git branch*)", // List/show branches (read-only operations)
+      "Bash(git tag*)", // List tags (read-only operations)
+      "Bash(git remote -v)", // Show remote URLs
+      "Bash(git ls-remote*)", // List remote references
+
+      // File and staging inspection
+      "Bash(git ls-files*)", // List tracked files
+      "Bash(git ls-tree*)", // List tree objects
+      "Bash(git cat-file*)", // Show object content
+
+      // Configuration inspection
+      "Bash(git config --get*)", // Read configuration values
+      "Bash(git config --list)", // List all configuration
+
+      // Working directory inspection
+      "Bash(git stash list)", // List stashed changes
+      "Bash(git stash show*)", // Show stash contents
+
+      // Reflog inspection (local only)
+      "Bash(git reflog*)", // Show reference logs
+
       // Core file operations
       "Read",
       "Edit",
@@ -169,6 +201,8 @@
     ],
 
     "deny": [
+      "Bash(git*)", // Block all other git commands
+
       // Package managers and installers
       "Bash(npm:*)", // Node package manager
       "Bash(node:*)", // Node.js runtime
