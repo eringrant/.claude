@@ -159,14 +159,39 @@ src/
 ├── my_package/
 │   ├── __init__.py
 │   ├── core/
-│   ├── services/
-│   ├── utils/
-│   └── types.py
-├── tests/
-│   ├── test_core/
-│   ├── test_services/
-│   └── test_utils/
-└── pyproject.toml
+│   │   ├── __init__.py
+│   │   ├── layers.py
+│   │   └── optimizers.py
+│   └── utils/
+│       └── __init__.py
+├── experiments/
+│   ├── __init__.py
+│   └── ...
+├── LICENSE
+├── pyproject.toml
+└── README.md
+
+tests/
+├── __init__.py
+├── conftest.py
+├── unit/
+│   ├── __init__.py
+│   └── core/
+│       ├── __init__.py
+│       ├── test_layers.py
+│       └── test_optimizers.py
+├── integration/
+│   ├── __init__.py
+│   └── test_training_loop.py
+└── regression/
+    ├── __init__.py
+    ├── test_pytorch_reference.py
+    ├── test_sklearn_reference.py
+    ├── test_numerical_stability.py
+    └── fixtures/
+        ├── __init__.py
+        ├── reference_outputs.pkl
+        └── test_data.npy
 ```
 
 ### Utility Function Placement
@@ -181,8 +206,8 @@ src/
 #### Core Principles
 
 - **Self-documenting code first** - Use clear naming and structure
-- **Comments must add value** - Explain WHY, not WHAT
-- **Docstrings for public functions** - Follow Google
+- **Comments must add value** - Explain WHY, not WHAT; omit otherwise
+- **Docstrings for public functions** - Follow Google style
 
 #### Example:
 
@@ -209,9 +234,8 @@ def calculate_hash(data: bytes) -> str:
 ### Test Structure
 
 - **All tests in `tests/` directory**
-- **Mirror source structure**: `tests/test_module/test_submodule.py`
-- **One test file per module**
 - **Use pytest fixtures** for common setup within a test module
+- **Use hypothesis** to parameterize tests
 - **Write common test utilities** if setup is shared across test modules
 
 ### Test Commands
@@ -221,7 +245,7 @@ def calculate_hash(data: bytes) -> str:
 uv run pytest
 
 # Run specific test file
-uv run pytest tests/test_core/test_auth.py
+uv run pytest tests/unit/test_auth.py
 
 # Run with coverage
 uv run pytest --cov=src
@@ -259,7 +283,7 @@ Example:
 ```
 ## Session Summary
 - Modified: `src/my_package/auth.py` (added login validation)
-- Added: `tests/test_auth.py` (login validation tests)
+- Added: `tests/unit/test_auth.py` (login validation tests)
 - Commands run: `uv sync`, `uv run pytest`, `uv run pre-commit`
 - Status: All tests passing, pre-commit checks passed
 - Next: Need decision on password complexity requirements
