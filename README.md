@@ -16,10 +16,11 @@ git clone git@github.com:eringrant/.claude
 ```
 
 If you receive the error `fatal: destination path '.claude' already exists and is not an empty directory.`
-(i.e., you already have a `.claude` directory in your home directory),
+(*i.e.*, you already have a `.claude` directory in your home directory),
 then you can run the following commands to consolidate the existing directory with this repo:
 
 ```sh
+cd .claude
 git init
 git remote add origin git@github.com:eringrant/.claude
 git fetch
