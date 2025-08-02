@@ -11,6 +11,7 @@
       // Some Git commands
       "Bash(git status:*)",
       "Bash(git diff:*)",
+
       // Read-only repository inspection
       "Bash(git status)", // Show working tree status
       "Bash(git log*)", // View commit history
@@ -201,7 +202,8 @@
     ],
 
     "deny": [
-      "Bash(git*)", // Block all other git commands
+      "Bash(git*)", // Other Git commands
+      "Bash(op*)",  // 1Password
 
       // Package managers and installers
       "Bash(npm:*)", // Node package manager
